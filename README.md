@@ -190,4 +190,6 @@ Major problems faced:-
 
 ## License
 
-<!-- TODO: add a license (for example MIT) and your name -->
+This project is licensed under the **MIT License**. 
+
+You are free to use, modify, and distribute this software for personal or commercial purposes, provided that the original copyright notice and permission notice are included. See the [LICENSE](LICENSE) file for the full text.
