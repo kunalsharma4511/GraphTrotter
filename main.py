@@ -1,9 +1,3 @@
-"""STEP 10 - CLI runner to test the graph without a UI.
-
-TODO: build a TravelRequest, call graph.invoke({"request": req, "errors": []}),
-pretty-print flights / stays / activities / errors.
-Try graph.stream(..., stream_mode="updates") to watch nodes finish.
-"""
 
 from pydantic import ValidationError
 
