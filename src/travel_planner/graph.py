@@ -1,4 +1,4 @@
-"""STEP 6 + 8 - Wire the graph.
+"""
 
 TODO:
   from langgraph.graph import StateGraph, START, END
