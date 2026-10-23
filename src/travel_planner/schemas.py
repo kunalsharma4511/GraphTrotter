@@ -1,5 +1,4 @@
-"""STEP 2 - Pydantic models (the contract between UI, graph and LLM).
-
+"""
 TODO (pydantic.BaseModel):
   TravelRequest : origin (optional), destination, start_date, end_date, budget (float > 0)
   FlightOption  : airline, departure_time, arrival_time, price_estimate_inr
@@ -7,9 +6,6 @@ TODO (pydantic.BaseModel):
   Activity      : name, description, price_estimate_inr, duration_hours
   FlightsResult / StaysResult / ActivitiesResult : each wraps a list of the above
                   (the LLM returns these via llm.with_structured_output(...))
-
-Tip: add Field(description=...) - those descriptions go to the LLM as hints.
-Tip: validate that end_date >= start_date (field_validator / model_validator).
 """
 import math
 from datetime import date
