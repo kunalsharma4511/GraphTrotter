@@ -1,16 +1,3 @@
-"""STEP 5 - The flights node.
-
-TODO:
-  def flights_node(state: TravelState) -> dict:
-      1. build chain = FLIGHTS_PROMPT | get_llm().with_structured_output(FlightsResult)
-      2. result = chain.invoke({...fields from state["request"]...})
-      3. return {"flights": result.flights}
-      4. wrap in try/except -> return {"errors": [f"flights: {e}"]} so one failure
-         doesn't kill the whole trip plan
-
-Tip: 7-8B local models can fail structured output. Fallback: ask for JSON text and
-parse it yourself, or retry once.
-"""
 
 import os
 
