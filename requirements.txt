@@ -1,0 +1,9 @@
+langgraph
+langchain-core
+langchain-groq
+pydantic>=2
+python-dotenv
+streamlit
+pytest
+apify-client
+airportsdata # for IATA Codes
