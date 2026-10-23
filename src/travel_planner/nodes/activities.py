@@ -1,16 +1,4 @@
-"""STEP 7 - The activities node.
 
-TODO:
-  def activities_node(state: TravelState) -> dict:
-      1. build chain = ACTIVITIES_PROMPT | get_llm().with_structured_output(ActivitiesResult)
-      2. result = chain.invoke({...fields from state["request"]...})
-      3. return {"activities": result.activities}
-      4. wrap in try/except -> return {"errors": [f"activities: {e}"]} so one failure
-         doesn't kill the whole trip plan
-
-Tip: 7-8B local models can fail structured output. Fallback: ask for JSON text and
-parse it yourself, or retry once.
-"""
 from travel_planner.state import TravelState
 
 
