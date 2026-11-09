@@ -1,4 +1,5 @@
 import math
+
 from travel_planner import budget
 from travel_planner.config import get_llm
 from travel_planner.prompts import ACTIVITIES_PROMPT
