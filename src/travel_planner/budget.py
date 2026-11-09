@@ -20,14 +20,6 @@ def rooms(req: TravelRequest) -> int:
     return math.ceil(req.passengers / 2)
 
 
-def flight_cap_per_person(req: TravelRequest) -> int:
-    return int(req.budget * SHARES["flights"] / req.passengers)
-
-
-def activity_cap_per_person(req: TravelRequest) -> int:
-    return int(req.budget * SHARES["activities"] / req.passengers)
-
-
 def estimate_total(req, flights, stays, activities) -> dict:
     flights_low = min((f.price_min for f in flights), default=0) * req.passengers
     flights_high = min((f.price_max for f in flights), default=0) * req.passengers

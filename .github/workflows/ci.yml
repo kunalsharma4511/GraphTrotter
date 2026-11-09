@@ -16,4 +16,4 @@ jobs:
       - run: pip install -r requirements.txt
       - run: pip install -e . ruff pytest-cov
       - run: ruff check .
-      - run: pytest -q --cov=travel_planner --cov-report=term-missing
+      - run: pytest -q --cov=travel_planner --cov-report=term-missing --cov-fail-under=95

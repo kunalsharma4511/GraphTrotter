@@ -57,3 +57,23 @@ def test_unknown_city_reports_clear_reason(monkeypatch):
     monkeypatch.setattr(flights_mod, "_estimate_flights", lambda _req: [])
     out = flights_mod.flights_node({"request": make_req(destination="Atlantis"), "errors": []})
     assert "unknown destination" in out["errors"][0]
+
+
+def test_empty_live_result_falls_back_with_reason(monkeypatch):
+    est = [FlightOption(airline="X", price_min=1, price_max=2, route_note="est")]
+    monkeypatch.setattr(flights_mod, "_fetch_live", lambda req: [])
+    monkeypatch.setattr(flights_mod, "_estimate_flights", lambda req: est)
+    out = flights_mod.flights_node({"request": make_req(), "errors": []})
+    assert out["flights"] == est
+    assert "no live fares returned" in out["errors"][0]
+
+
+def test_live_and_estimate_both_failing_reports_one_error(monkeypatch):
+    def boom(req):
+        raise RuntimeError("down")
+
+    monkeypatch.setattr(flights_mod, "_fetch_live", boom)
+    monkeypatch.setattr(flights_mod, "_estimate_flights", boom)
+    out = flights_mod.flights_node({"request": make_req(), "errors": []})
+    assert "flights" not in out
+    assert "estimate also failed" in out["errors"][0]
