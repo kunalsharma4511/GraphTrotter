@@ -1,12 +1,3 @@
-"""STEP 4 - Prompt templates, one per node.
-
-TODO: use langchain_core.prompts.ChatPromptTemplate
-  FLIGHTS_PROMPT, STAYS_PROMPT, ACTIVITIES_PROMPT
-  - system message: the role + "estimates only, you have no live data"
-  - human message: destination, dates, budget (and origin for flights)
-Keep them separate from node code so you can tune them without touching logic.
-"""
-
 
 from langchain_core.prompts import ChatPromptTemplate
 

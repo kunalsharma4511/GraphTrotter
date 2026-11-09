@@ -1,9 +1,4 @@
-"""STEP 9 (optional) - Final node that writes a short trip overview.
 
-TODO: read flights/stays/activities from state, ask the LLM for a 5-line itinerary
-summary that respects the budget, return {"summary": str}.
-Add `summary: str` to TravelState first.
-"""
 from datetime import timedelta
 
 from langchain_core.output_parsers import StrOutputParser
@@ -62,7 +57,7 @@ def summarize_node(state: TravelState) -> dict:
     activities = state.get("activities", [])
 
     if not (flights or stays or activities):
-        return {}  # nothing to summarise; the earlier errors already explain why
+        return {}  
 
     try:
         chain = SUMMARY_PROMPT | get_llm() | StrOutputParser()

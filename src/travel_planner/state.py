@@ -1,4 +1,4 @@
-"""STEP 3 - Graph state shared by every node.
+"""
 
 TODO: define TravelState(TypedDict):
   request    : TravelRequest

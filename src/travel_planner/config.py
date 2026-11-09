@@ -1,4 +1,3 @@
-"""STEP 1 - Build the chat model from environment variables."""
 import os
 
 from dotenv import load_dotenv

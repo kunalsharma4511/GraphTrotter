@@ -1,10 +1,7 @@
-"""STEP 11 - Streamlit UI.  Run: streamlit run app.py
+import sys
+from pathlib import Path
 
-TODO: form (origin, destination, dates, budget) -> TravelRequest -> graph.invoke
--> render three sections, show state["errors"] as warnings.
-Tip: cache graph with @st.cache_resource.
-"""
-
+sys.path.insert(0, str(Path(__file__).parent / "src"))
 import datetime as dt
 from datetime import datetime
 from pathlib import Path
