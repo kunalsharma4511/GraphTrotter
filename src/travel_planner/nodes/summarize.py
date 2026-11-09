@@ -16,6 +16,7 @@ def build_facts(req, flights, stays, activities) -> str:
         f"Destination: {req.destination}",
         f"Travellers: {req.passengers} ({req.cabin_class.replace('_', ' ')} class)",
         "Trip days: " + ", ".join(f"Day {i} = {d:%a %d %b}" for i, d in enumerate(days, 1)),
+        f"Trip length: {n_days} days, {n_days - 1} nights",
     ]
     if flights:
         f = min(flights, key=lambda x: x.price_min)

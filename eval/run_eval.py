@@ -20,8 +20,10 @@ load_dotenv()
 
 from travel_planner import budget  # noqa: E402
 from travel_planner.airports import resolve_airport  # noqa: E402
+from travel_planner.faithfulness import check_itinerary  # noqa: E402
 from travel_planner.graph import graph  # noqa: E402
 from travel_planner.nodes.stays import MIN_SCORE  # noqa: E402
+from travel_planner.nodes.summarize import build_facts  # noqa: E402
 from travel_planner.schemas import TravelRequest  # noqa: E402
 
 PASS, FAIL, WARN, SKIP = "PASS", "FAIL", "WARN", "SKIP"
@@ -107,7 +109,7 @@ def check_graph_case(case, req, state):
             checks.append(("over-budget flag as expected",
                            PASS if over == case["expect_over"] else FAIL,
                            f"over_by_low {summary['over_by_low']:,.0f}, expected over={case['expect_over']}"))
-
+    facts, faith_score = "", None
     # itinerary
     if summary_text.strip():
         n_days = (req.end_date - req.start_date).days + 1
@@ -119,6 +121,17 @@ def check_graph_case(case, req, state):
         checks.append(("itinerary covers every day", PASS if not missing else WARN,
                        f"missing day(s): {missing}" if missing else ""))
         checks.append(("itinerary has no 'e.g.' examples", WARN if "e.g." in summary_text else PASS, ""))
+        facts = build_facts(req, flights, stays, acts)
+        report = check_itinerary(summary_text, facts)
+        faith_score = round(report.score, 3)
+        checks.append((
+            "itinerary claims supported by the data",
+            PASS if report.passed else FAIL,
+            f"unsupported: {report.hard_failures}" if report.hard_failures
+            else f"{report.checked} claims checked",
+        ))
+        if report.names:
+            checks.append(("itinerary names appear in the data", WARN, ", ".join(report.names)))
 
     snapshot = {
         "cheapest_flight_per_person": min((f.price_min for f in flights), default=None),
@@ -126,6 +139,8 @@ def check_graph_case(case, req, state):
         "total_low": summary["total_low"], "total_high": summary["total_high"],
         "over_by_low": summary["over_by_low"], "itinerary": summary_text,
         "activities": [{"name": a.name, "description": a.description} for a in acts],
+        "facts": facts,
+        "faithfulness": faith_score,
     }
     return checks, snapshot
 
