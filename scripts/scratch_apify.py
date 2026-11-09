@@ -3,9 +3,6 @@ import os
 from apify_client import ApifyClient
 from dotenv import load_dotenv
 
-from travel_planner.nodes import stays
-from travel_planner.nodes.stays import MIN_SCORE
-
 load_dotenv()
 client = ApifyClient(os.environ["APIFY_TOKEN"])
 

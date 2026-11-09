@@ -1,5 +1,5 @@
-from travel_planner.schemas import TravelRequest
 from travel_planner.nodes.flights import flights_node
+from travel_planner.schemas import TravelRequest
 
 req = TravelRequest(
     origin="Indore",

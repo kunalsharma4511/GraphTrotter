@@ -1,3 +1,4 @@
+from travel_planner import budget
 from travel_planner.graph import graph
 from travel_planner.schemas import TravelRequest
 
@@ -36,7 +37,7 @@ for a in result.get("activities", []):
 print("ERRORS:", result.get("errors", []))
 
 
-from travel_planner import budget
+
 summary = budget.estimate_total(
     req, result.get("flights", []), result.get("stays", []), result.get("activities", [])
 )

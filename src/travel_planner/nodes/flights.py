@@ -16,21 +16,18 @@ import os
 
 from apify_client import ApifyClient
 
+from travel_planner import budget
+from travel_planner.airports import resolve_airport
 from travel_planner.config import get_llm
 from travel_planner.prompts import FLIGHTS_PROMPT
-from travel_planner.schemas import FlightsResult
-from travel_planner.state import TravelState
-from travel_planner import budget
-
-from travel_planner.airports import resolve_airport
-from travel_planner.schemas import LiveFlight
+from travel_planner.schemas import FlightsResult, LiveFlight
 from travel_planner.state import TravelState
 
 ACTOR = "tidyscrape/google-flights-scraper"
 PRICE_COVERS_ALL_TRAVELLERS = True   # set True if the 1-vs-2 adults test shows the price doubling
 CABIN_MAP = {                         # edit to the values your actor's input accepts
     "economy": "economy",
-    "premium_economy": "premium-economy",
+    "premium economy": "premium-economy",
     "business": "business",
     "first": "first",
 }
@@ -96,7 +93,7 @@ def _to_live_flight(item: dict, req) -> LiveFlight:
 
     layovers = item.get("layovers") or []
     note = "Direct" if not layovers else "via " + ", ".join(
-        l.get("city") or l.get("airport", "?") for l in layovers
+        layover.get("city") or layover.get("airport", "?") for layover in layovers
     )
     ret = item.get("returnFlight") or {}
     price = per_person(float(item["price"]))

@@ -1,5 +1,5 @@
 from travel_planner.nodes.summarize import build_facts
-from travel_planner.schemas import Activity, FlightOption, StayOption, TravelRequest, LiveFlight
+from travel_planner.schemas import Activity, FlightOption, LiveFlight, StayOption, TravelRequest
 
 REQ = TravelRequest(destination="Paris", start_date="2026-12-01", end_date="2026-12-05",
                     currency="INR", budget=300000, passengers=2)

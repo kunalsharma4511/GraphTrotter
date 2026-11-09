@@ -1,7 +1,7 @@
 <p align="center">
   <img src="docs/logo.svg" alt="GraphTrotter logo" width="120">
 </p>
-
+![CI](https://github.com/kunalsharma4511/GraphTrotter/actions/workflows/ci.yml/badge.svg)
 <h1 align="center">GraphTrotter</h1>
 **Live flights and hotels, an AI-written itinerary, and an honest budget check, built as a parallel LangGraph workflow.**
 
@@ -64,8 +64,8 @@ Python, LangGraph, LangChain (`langchain-groq`), Groq (`openai/gpt-oss-120b`), A
 ## Getting started
 
 ```bash
-git clone <this-repo>
-cd graphtrotter
+git clone https://github.com/kunalsharma4511/GraphTrotter.git
+cd GraphTrotter
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
@@ -151,12 +151,11 @@ Observed run time was about 16 to 48 seconds per trip, dominated by the live dat
 
 Runs are traced in LangSmith, which makes the parallel branches, per-node latency and model inputs and outputs visible.
 
-docs/trace.png
+![LangSmith trace](docs/trace.png)
 
 ## What went wrong along the way
 
 These are the problems I hit and what I changed.
-Major problems faced:-
 1. **Model-estimated prices were off.** Flight and hotel prices from the model didn't match real sites, so both now come from live sources, with the model kept only as a labelled fallback for flights.
 2. **A scraped hotel price was about 6% below the site.** The cause was taxes: the scraper returns the price before taxes and fees. I chose not to hard-code a correction (tax rules change) and label the price as pre-tax in the UI.
 3. **Intermittent tool-call failures.** In function-calling mode the model sometimes filled the schema like a search tool and the API rejected it. Switching to JSON-schema structured output with retries fixed it.

@@ -11,16 +11,13 @@ TODO:
 Tip: 7-8B local models can fail structured output. Fallback: ask for JSON text and
 parse it yourself, or retry once.
 """
-from travel_planner.state import TravelState
-
-
 import math
 
+from travel_planner import budget
 from travel_planner.config import get_llm
 from travel_planner.prompts import ACTIVITIES_PROMPT
-from travel_planner.schemas import ActivitiesResult, StaysResult
+from travel_planner.schemas import ActivitiesResult
 from travel_planner.state import TravelState
-from travel_planner import budget
 
 
 def activities_node(state: TravelState) -> dict:

@@ -7,16 +7,16 @@ Tip: cache graph with @st.cache_resource.
 
 import datetime as dt
 from datetime import datetime
+from pathlib import Path
+
 import streamlit as st
+from PIL import Image
 from pydantic import ValidationError
 
 from travel_planner import budget
+from travel_planner.airports import resolve_airport
 from travel_planner.graph import graph
 from travel_planner.schemas import TravelRequest
-from travel_planner.airports import resolve_airport
-
-from pathlib import Path
-from PIL import Image
 
 LOGO = Path(__file__).parent / "docs" / "logo.png"
 
@@ -28,7 +28,7 @@ st.set_page_config(
 
 CABINS = {
     "Economy": "economy",
-    "Premium economy": "premium_economy",
+    "Premium economy": "premium economy",
     "Business": "business",
     "First": "first",
 }
@@ -48,8 +48,7 @@ def fmt_ts(ts):
 c_logo, c_title = st.columns([1, 9])
 c_logo.image(str(LOGO), width=72)
 c_title.title("GraphTrotter")
-st.caption("Flights and Hotels are live prices from Booking.com." \
-" Activities are AI estimates. Check official sites for real prices and availability.")
+st.caption("Flights are live fares from Google Flights and hotels are live prices from Booking.com. Activities are AI estimates. Check official sites for real prices and availability.")
 
 with st.form("trip_form"):
     c1, c2 = st.columns(2)
@@ -153,7 +152,7 @@ if saved:
     with tab_flights:
         live_flights = [f for f in flights if getattr(f, "live", False)]
         if live_flights:
-            st.caption(f"Live fares from Google Flights, fetched {live_flights[0].scraped_at or 'just now'}. Prices change often.")
+            st.caption(f"Live fares from Google Flights, fetched {fmt_ts(live_flights[0].scraped_at) or 'just now'}. Prices change often.")
         else:
             st.caption("AI estimates, not live fares. Check airline sites for routes, durations and exact prices.")
         for f in flights:

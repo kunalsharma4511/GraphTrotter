@@ -11,10 +11,8 @@ TODO (pydantic.BaseModel):
 Tip: add Field(description=...) - those descriptions go to the LLM as hints.
 Tip: validate that end_date >= start_date (field_validator / model_validator).
 """
-import math
 from datetime import date
-from math import ceil
-from typing import Optional, Literal
+from typing import Literal, Optional
 
 from pydantic import BaseModel, Field, model_validator
 

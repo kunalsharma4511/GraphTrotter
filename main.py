@@ -53,10 +53,13 @@ def print_results(req: TravelRequest, result: dict) -> None:
     for f in flights:
         print(f"  {getattr(f, 'airline', 'N/A')}: {getattr(f, 'price_min', 0):,.0f} to {getattr(f, 'price_max', 0):,.0f} {cur}  ({getattr(f, 'route_note', '')})")
 
-    print("\n=== STAYS (per room, per night) ===")
+    print("\n=== STAYS (total for all rooms, before taxes) ===")
     for s in stays:
-        print(f"  {s.name} - {s.area}: {s.price_per_night:,.0f} {cur}")
-        print(f"      {s.highlights}")
+        score = f", rated {s.review_score:.1f}/10" if s.review_score else ""
+        print(f"  {s.name} - {s.area}{score}")
+        print(f"      {s.total_price:,.0f} {cur} total ({s.price_per_night:,.0f} per night)")
+        if s.url:
+          print(f"      {s.url}")
 
     print("\n=== ACTIVITIES (per person) ===")
     for a in activities:

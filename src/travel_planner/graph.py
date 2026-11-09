@@ -19,8 +19,8 @@ from langgraph.graph import END, START, StateGraph
 from travel_planner.nodes.activities import activities_node
 from travel_planner.nodes.flights import flights_node
 from travel_planner.nodes.stays import stays_node
-from travel_planner.state import TravelState
 from travel_planner.nodes.summarize import summarize_node
+from travel_planner.state import TravelState
 
 builder = StateGraph(TravelState)
 builder.add_node("flights", flights_node)

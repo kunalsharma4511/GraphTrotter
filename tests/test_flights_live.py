@@ -1,4 +1,3 @@
-from langchain_core.runnables import RunnableLambda
 
 from travel_planner.nodes import flights as flights_mod
 from travel_planner.schemas import FlightOption, TravelRequest
