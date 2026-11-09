@@ -1,6 +1,7 @@
 <p align="center">
   <img src="docs/logo.svg" alt="GraphTrotter logo" width="120">
 </p>
+![CI](https://github.com/kunalsharma4511/GraphTrotter/actions/workflows/ci.yml/badge.svg)
 <h1 align="center">GraphTrotter</h1>
 ![CI](https://github.com/kunalsharma4511/GraphTrotter/actions/workflows/ci.yml/badge.svg)
 
