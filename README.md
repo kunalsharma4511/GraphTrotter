@@ -1,8 +1,9 @@
 <p align="center">
   <img src="docs/logo.svg" alt="GraphTrotter logo" width="120">
 </p>
-![CI](https://github.com/kunalsharma4511/GraphTrotter/actions/workflows/ci.yml/badge.svg)
 <h1 align="center">GraphTrotter</h1>
+![CI](https://github.com/kunalsharma4511/GraphTrotter/actions/workflows/ci.yml/badge.svg)
+
 **Live flights and hotels, an AI-written itinerary, and an honest budget check, built as a parallel LangGraph workflow.**
 
 Give it an origin, a destination, dates, travellers, cabin class and a budget. Three branches run at the same time (flights, hotels, activities), then an itinerary node writes the plan from the results. If the cheapest realistic plan doesn't fit your budget, it tells you by how much.
